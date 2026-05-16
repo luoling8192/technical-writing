@@ -13,7 +13,17 @@
 
 ## 安装
 
-### Claude Code
+通过 [skills.sh](https://skills.sh) 一行装，自动检测当前 agent 并写入对应目录：
+
+```bash
+npx skills add luoling8192/technical-writing
+```
+
+支持 Claude Code、Cursor、Codex、GitHub Copilot、Windsurf、Gemini、Cline、AMP 等主流 agent runtime。装完在对应 agent 里用 Skill 工具调用 `technical-writing` 即可，也可以在项目的 CLAUDE.md / AGENTS.md 里把它列为常用 skill。
+
+### 手动安装（fallback）
+
+如果不想用 skills.sh，可以直接 clone 后软链接：
 
 ```bash
 git clone https://github.com/luoling8192/technical-writing.git ~/repos/technical-writing
@@ -21,19 +31,7 @@ mkdir -p ~/.claude/skills
 ln -s ~/repos/technical-writing ~/.claude/skills/technical-writing
 ```
 
-或者通过 `~/.agents/skills/` 注册（推荐，可被其他 agent runtime 共享）：
-
-```bash
-mkdir -p ~/.agents/skills ~/.claude/skills
-ln -s ~/repos/technical-writing ~/.agents/skills/technical-writing
-ln -s ../../.agents/skills/technical-writing ~/.claude/skills/technical-writing
-```
-
-启动 Claude Code 后用 Skill 工具调用 `technical-writing`，或在 CLAUDE.md 里把它列为常用 skill。
-
-### OpenAI Codex
-
-`agents/openai.yaml` 是 Codex agent 配置，按 Codex 文档注册到本地即可。
+OpenAI Codex 用户可参考 `agents/openai.yaml`，按 Codex 文档注册到本地。
 
 ## 核心约束
 

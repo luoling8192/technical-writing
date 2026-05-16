@@ -98,7 +98,7 @@ Use this skill when the writing target is an internal技术方案、评审稿、
 - 少用修辞和比喻，尤其是面对前线开发和内部评审
 - 少用居高临下的口吻，避免说教感
 - 少写成议论文式对抗句，优先顺着读者的理解路径展开
-- 专有概念按正式名字书写，大小写保持稳定，例如 `Agent Runtime`、`Context Engine`、`Agent Signal`、`Event`
+- 专有概念按正式名字书写，大小写保持稳定，例如项目里的 `Collector`、`Scheduler`、`Alert` 这类专名，全文统一一种写法
 - 指标、能力、链路这些名词先钉住，再配动词和形容词；优先复用已经确定的词系，例如 `流通性`、`筛选`、`聚合`、`命中`，不要临时拼接近义词
 - 不要写口语化的过场句，例如 `聊到这里`、`继续往下看`、`这条方向很值得继续推开`、`先把这件事单独拿出来说`、`最后可以用一句话收住`；如果一句话只是在主持文章，不承载信息，就直接删掉
 - 少用空评价词，例如 `很现实`、`很重`、`很轻`、`很顺`；改成具体约束、具体风险、具体影响
@@ -175,17 +175,17 @@ Use this skill when the writing target is an internal技术方案、评审稿、
 
 常用句法：
 
-- `也许你会先想到 Workflow，像是……`
+- `也许你会先想到定时巡检，像是……`
 - `顺着这个方向想下去，会发现我们更关心的是……`
 - `这样理解，会更贴近这次设计的边界`
 
 适合接一个 quote：
 
-> 一个复杂任务如何按预定义节点顺序执行
+> 一条巡检任务如何按预定周期扫描每个指标
 
 然后再转入你真正要讨论的问题：
 
-> 聊天过程中持续冒出的离散事实，怎样在不阻塞主链路的情况下，被解释成值得处理的反馈信号
+> 持续涌入的原始日志，怎样在不拖慢写入链路的情况下，被判定成一条值得通知的告警
 
 ## Few-Shot Fixes
 
@@ -195,7 +195,7 @@ Use this skill when the writing target is an internal技术方案、评审稿、
 
 原句：
 
-> 一旦把信号层接到多 adapter 上，粒度问题会马上变得很现实。
+> 一旦把告警规则接到多个采集端上，粒度问题会马上变得很现实。
 
 问题：
 
@@ -205,12 +205,12 @@ Use this skill when the writing target is an internal技术方案、评审稿、
 
 改写：
 
-> 可以预见的是，Agent Signal 集成进入 adapter 之后，信号控制会很重要。
+> 可以预见的是，告警规则接入多个采集端之后，规则粒度的控制会很重要。
 
 为什么这样改：
 
-- 先写条件：`集成进入 adapter 之后`
-- 再写对象：`信号控制`
+- 先写条件：`接入多个采集端之后`
+- 再写对象：`规则粒度的控制`
 - 最后写判断：`会很重要`
 
 ### 2. 不要用空评价词替代约束
@@ -230,7 +230,7 @@ Use this skill when the writing target is an internal技术方案、评审稿、
 
 或者：
 
-> 这种组合能把主回答链路和高频判断链路拆开。
+> 这种组合能把日志写入链路和告警判定链路拆开。
 
 为什么这样改：
 
@@ -242,7 +242,7 @@ Use this skill when the writing target is an internal技术方案、评审稿、
 
 原句：
 
-> 它值得认真看的地方，不在宣传语，而在它把一组运行时机制组织得很完整。
+> 它值得认真看的地方，不在宣传语，而在它把一组采集与告警机制组织得很完整。
 
 问题：
 
@@ -251,7 +251,7 @@ Use this skill when the writing target is an internal技术方案、评审稿、
 
 改写：
 
-> 更值得认真拆开的，是它把一组运行时机制组织得比较完整。
+> 更值得认真拆开的，是它把一组采集与告警机制组织得比较完整。
 
 为什么这样改：
 
@@ -263,7 +263,7 @@ Use this skill when the writing target is an internal技术方案、评审稿、
 
 原句：
 
-> 聊到这里，memory 相关模型也该放进来一起看了。
+> 聊到这里，告警去重相关的模型也该放进来一起看了。
 
 问题：
 
@@ -272,7 +272,7 @@ Use this skill when the writing target is an internal技术方案、评审稿、
 
 改写：
 
-> memory 相关模型也需要放进来一起讨论。
+> 告警去重相关的模型也需要放进来一起讨论。
 
 为什么这样改：
 
@@ -339,10 +339,10 @@ Use this skill when the writing target is an internal技术方案、评审稿、
 
 原句：
 
-> 第一，入口很多，但 agent 请求最终还是会被收束到 runtime。
-> 第二，context engine 已经承担了消息整理……
-> 第三，runtime 自己已经天然拥有一组执行边界……
-> 第四，外围模块已经把不少有价值的信息散落出来了……
+> 第一，采集端很多，但日志最终还是会被收束到告警引擎。
+> 第二，采集层已经承担了日志归一化……
+> 第三，告警引擎自己已经天然拥有一组规则边界……
+> 第四，外围模块已经把不少有价值的事件散落出来了……
 
 问题：
 
@@ -351,9 +351,9 @@ Use this skill when the writing target is an internal技术方案、评审稿、
 
 改写：
 
-1. 入口很多，但 agent 请求最终还是会被收束到 Agent Runtime。
-2. Context Engine 已经承担了消息整理、tool 注入、memory 注入、document 注入、skills 注入。
-3. Agent Runtime 自己已经拥有一组稳定的执行边界。
+1. 采集端很多，但日志最终还是会被收束到告警引擎。
+2. 采集层已经承担了日志归一化、字段提取、标签注入、来源标注。
+3. 告警引擎自己已经拥有一组稳定的规则边界。
 4. 外围模块已经给出了足够多的事件与状态。
 
 为什么这样改：
@@ -366,7 +366,7 @@ Use this skill when the writing target is an internal技术方案、评审稿、
 
 原句：
 
-> 第一组命题靠近转化率。不同 source 类型进入系统之后，有多少被 dedupe 掉，有多少在 cooldown 里停住，有多少被 policy 接住，最后又有多少真的升级成 Agent Signal。
+> 第一组命题靠近转化率。不同 source 类型进入系统之后，有多少被 dedupe 掉，有多少在 cooldown 里停住，有多少被 policy 接住，最后又有多少真的升级成一条告警。
 
 问题：
 
@@ -380,7 +380,7 @@ Use this skill when the writing target is an internal技术方案、评审稿、
 >    - 有多少被 dedupe 筛选
 >    - 有多少进入 cooldown 聚合
 >    - 有多少被 policy 命中
->    - 最后又有多少升级成 Agent Signal
+>    - 最后又有多少升级成一条告警
 
 为什么这样改：
 
@@ -392,8 +392,8 @@ Use this skill when the writing target is an internal技术方案、评审稿、
 
 原句：
 
-> 从 agent 入口到语义信号层……
-> 后面直接开始解释 runtime、context engine、adapter……
+> 从采集入口到告警判定层……
+> 后面直接开始解释告警引擎、采集层、规则模块……
 
 问题：
 
@@ -402,7 +402,7 @@ Use this skill when the writing target is an internal技术方案、评审稿、
 
 改写结构：
 
-1. 先点明问题：`这一节表面上在讲 Agent Runtime，真正要回答的是 Agent Signal 应该放在哪里。`
+1. 先点明问题：`这一节表面上在讲告警引擎，真正要回答的是去重模块应该放在哪里。`
 2. 用一个很短的 `mindmap` 收住周边模块
 3. 再给一个生命周期图
 4. 最后才写 `1. 2. 3. 4.` 论据，把概念安到现有系统上
@@ -430,14 +430,14 @@ Use this skill when the writing target is an internal技术方案、评审稿、
 更合适的结构：
 
 > 第一段：先讲外部启发或上游项目带来的变化
-> 第二段：再讲 Chat、Bot、Responses API、Eval、Memory 等输入已经存在，系统接下来要整理的是长期信号
-> 第三段：直接提出新模块设计，例如 Agent Signal，以及 Redis / Upstash / useWorkflow 这类架构决策
+> 第二段：再讲日志、指标、trace、事件等输入已经存在，系统接下来要整理的是反复出现、需要聚合的重复告警
+> 第三段：直接提出新模块设计，以及消息队列、异步消费框架这类架构决策
 
 例子：
 
-> 上游某个项目让大家看到了另一种 Agent 形态……
+> 上游某个监控项目让大家看到了另一种告警形态……
 > 当前系统也已经具备了足够多的输入和状态来源……
-> 这里提出一个新的模块设计：Agent Signal……
+> 这里提出一个新的模块设计……
 
 为什么这样改：
 
@@ -473,7 +473,7 @@ Use this skill when the writing target is an internal技术方案、评审稿、
 
 例如：
 
-> 可以预见的是，Agent Signal 集成进入 adapter 之后，信号控制会很重要。
+> 可以预见的是，告警规则接入多个采集端之后，规则粒度的控制会很重要。
 
 ### 11. 不要把结构写成隐喻动作
 
@@ -539,16 +539,16 @@ Use this skill when the writing target is an internal技术方案、评审稿、
 
 适合用箭头的内容：
 
-- `source -> signal -> action`
+- `event -> dedupe -> alert`
 - `background -> hypothesis -> answer`
-- `observe -> infer -> route -> write back`
+- `collect -> match -> notify`
 
 ## Module-Level Writing
 
 只谈抽象很容易飘。只谈代码又会失去设计视角。内部技术文档通常需要两层一起出现：
 
 - 抽象层：概念、边界、语义、主张
-- 实现层：模块、类型、executor、policy、storage、trace、eval
+- 实现层：模块、类型、采集器、规则、存储、trace、eval
 
 写实现层时，尽量把模块面摊开：
 
@@ -560,10 +560,10 @@ Use this skill when the writing target is an internal技术方案、评审稿、
 如果一段在说“改造”或“补充实现”，优先给出可扫描的块，例如：
 
 > 可能涉及到的补充实现：
-> - memory layer CRUD 拓展
-> - signal orchestration 从 inline 转向异步消费
+> - 告警存储层 CRUD 拓展
+> - 告警编排从 inline 转向异步消费
 > - tracing 压缩与聚合策略
-> - developer center 的链路展示与命题聚合
+> - 可观测面板的链路展示与命题聚合
 
 ## Tone Calibration
 
